@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://em-content.zobj.net/source/apple/391/bar-chart_1f4ca.png">
+
+    <title>Облік увімкнень/вимкнень</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(
+                135deg,
+                #667eea 0%,
+                #764ba2 100%
+            );
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+
+        .card,
+        .history {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            margin-bottom: 1.5rem;
+        }
+
+
+        h1,
+        h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            margin-left: 0.5rem;
+        }
+
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 1.5rem;
+            margin-left: 0.5rem;
+        }
+
+
+        .hidden {
+            display: none !important;
+        }
+
+
+        .login-section {
+            margin-bottom: 1.5rem;
+        }
+
+
+        .divider {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 1.5rem 0;
+        }
+
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.8rem;
+            margin-left: 0.5rem;
+        }
+
+
+        input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+        }
+
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+
+        .hint {
+            margin-top: 0.5rem;
+            color: #777;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+
+        button {
+            border: none;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+
+        .btn-primary {
+            width: 100%;
+            background: #667eea;
+            color: white;
+        }
+
+
+        .btn-create {
+            width: 100%;
+            background: #11998e;
+            color: white;
+        }
+
+
+        .btn-secondary {
+            width: 100%;
+            background: #6c757d;
+            color: white;
+            margin-top: 0.8rem;
+        }
+
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+
+        .buttons button {
+            flex: 1;
+            font-size: 1.2rem;
+        }
+
+
+        .btn-on {
+            background: linear-gradient(
+                135deg,
+                #11998e,
+                #38ef7d
+            );
+            color: white;
+        }
+
+
+        .btn-off {
+            background: linear-gradient(
+                135deg,
+                #eb3349,
+                #f45c43
+            );
+            color: white;
+        }
+
+
+        .status {
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+
+        .history-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+
+        .history-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+
+        .action {
+            flex: 1;
+        }
+
+
+        .timestamp {
+            color: #666;
+            font-family: monospace;
+        }
+
+
+        .refresh-btn {
+            background: #3498db;
+            color: white;
+        }
+
+
+        .logout-btn {
+            background: #6c757d;
+            color: white;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+
+        .message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            display: none;
+        }
+
+
+        .message.success {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+        }
+
+
+        .message.error {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+
+        .success-box {
+            background: #e8f5e9;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+
+        .generated-code {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 0.15rem;
+            margin: 1rem 0;
+            color: #137333;
+            font-family: monospace;
+        }
+
+        /* ========================= */
+        /* ПІДТРИМКА */
+        /* ========================= */
+
+        .support {
+            text-align: center;
+            color: white;
+            padding: 0.5rem 1rem 1rem;
+            font-size: 0.95rem;
+        }
+
+        .support-title {
+            margin-bottom: 0.7rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .support-links {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .support-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+
+            padding: 0.65rem 1rem;
+
+            border-radius: 0.8rem;
+
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+
+            background: rgba(255, 255, 255, 0.15);
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+
+            transition: 0.2s;
+        }
+
+        .support-link:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .support-link:active {
+            transform: scale(0.97);
+        }
+
+
+        @media (max-width: 600px) {
+
+            .card,
+            .history {
+                padding: 1.5rem;
+            }
+
+
+            .buttons {
+                flex-direction: column;
+            }
+
+
+            .history-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ========================= -->
+    <!-- ВХІД В ЕКІПАЖ -->
+    <!-- ========================= -->
+
+    <div
+        class="card"
+        id="loginScreen"
+    >
+
+        <h1>
+            <span>📊</span>
+            Облік увімкнень/вимкнень
+        </h1>
+
+        <div class="subtitle">
+            Спільна система обліку для всіх екіпажів
+        </div>
+
+        <hr class="divider">
+
+        <h3 class="section-title">Увійдіть у свій екіпаж або створіть новий</h3>
+
+        <hr class="divider">
+
+
+        <div class="login-section">
+
+            <h2>
+                🔐 Вхід в екіпаж
+            </h2>
+
+
+            <div class="form-group">
+
+                <label for="loginCode">
+                    Код екіпажу
+                </label>
+
+
+                <input
+                    type="text"
+                    id="loginCode"
+                    placeholder="Введіть код екіпажу"
+                    maxlength="12"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <button
+                class="btn-primary"
+                id="loginBtn"
+            >
+                🔐 Увійти
+            </button>
+
+        </div>
+
+
+        <hr class="divider">
+
+
+        <div class="subtitle">
+            Немає створеного екіпажу?
+        </div>
+
+
+        <button
+            class="btn-create"
+            id="showCreateBtn"
+        >
+            ➕ Створити новий екіпаж
+        </button>
+
+
+        <div
+            id="loginMessage"
+            class="message"
+        ></div>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- СТВОРЕННЯ ЕКІПАЖУ -->
+    <!-- ========================= -->
+
+    <div
+        class="card hidden"
+        id="createScreen"
+    >
+
+        <h1>➕ Створення екіпажу</h1>
+
+        <div class="subtitle">
+            Введіть назву та придумайте код для свого екіпажу
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="crewName">
+                Назва екіпажу
+            </label>
+
+
+            <input
+                type="text"
+                id="crewName"
+                placeholder="Наприклад: Екіпаж Альфа"
+                maxlength="50"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="crewCode">
+                Код екіпажу
+            </label>
+
+
+            <input
+                type="text"
+                id="crewCode"
+                placeholder="Наприклад: K7M42P"
+                maxlength="12"
+                autocomplete="off"
+            >
+
+
+            <div class="hint">
+
+                Код повинен містити:<br>
+
+                • від 6 до 12 символів<br>
+                • хоча б одну англійську букву<br>
+                • хоча б одну цифру<br>
+                • тільки англійські букви та цифри<br>
+                • без пробілів
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="crewCodeConfirm">
+                Повторіть код
+            </label>
+
+
+            <input
+                type="text"
+                id="crewCodeConfirm"
+                placeholder="Повторіть код екіпажу"
+                maxlength="12"
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <button
+            class="btn-create"
+            id="createBtn"
+        >
+            ➕ Створити екіпаж
+        </button>
+
+
+        <button
+            class="btn-secondary"
+            id="backToLoginBtn"
+        >
+            ← Назад
+        </button>
+
+
+        <div
+            id="createMessage"
+            class="message"
+        ></div>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- ЕКІПАЖ СТВОРЕНО -->
+    <!-- ========================= -->
+
+    <div
+        class="card hidden"
+        id="createdScreen"
+    >
+
+        <div class="success-box">
+
+            <div style="font-size: 3rem;">
+                ✅
+            </div>
+
+
+            <h2>
+                Екіпаж успішно створено
+            </h2>
+
+
+            <p>
+                Назва екіпажу:
+            </p>
+
+
+            <p style="font-size: 1.2rem; margin-top: 0.3rem;">
+                <strong id="createdCrewName"></strong>
+            </p>
+
+
+            <p style="margin-top: 1.5rem;">
+                Код екіпажу:
+            </p>
+
+
+            <div
+                class="generated-code"
+                id="createdCrewCode"
+            ></div>
+
+
+            <p>
+                ⚠️ Збережіть цей код.
+                Він знадобиться іншим членам екіпажу для входу.
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn-primary"
+            id="copyCodeBtn"
+            style="margin-top: 1rem;"
+        >
+            📋 Скопіювати код
+        </button>
+
+
+        <button
+            class="btn-create"
+            id="continueBtn"
+            style="margin-top: 0.8rem;"
+        >
+            🚑 Продовжити
+        </button>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- ЕКІПАЖ -->
+    <!-- ========================= -->
+
+    <div
+        id="crewScreen"
+        class="hidden"
+    >
+
+
+        <div class="card">
+
+            <h1>
+    <span>📊</span>
+    Облік увімкнень/вимкнень
+</h1>
+
+<div class="subtitle">
+    Спільна система обліку для екіпажу
+</div>
+
+<hr class="divider">
+
+<h2 style="margin-bottom: 0.5rem;">
+    
+    <span id="crewTitle">
+        Екіпаж
+    </span>
+</h2>
+
+<div
+    class="subtitle"
+    id="crewCodeDisplay"
+></div>
+
+
+            <div
+                class="subtitle"
+                id="crewCodeDisplay"
+            ></div>
+
+
+            <div class="buttons">
+
+                <button
+                    class="btn-on"
+                    id="btnOn"
+                >
+                    ✅ Увімкнулись
+                </button>
+
+
+                <button
+                    class="btn-off"
+                    id="btnOff"
+                >
+                    ❌ Вимкнулись
+                </button>
+
+            </div>
+
+
+            <div
+                class="status"
+                id="statusMessage"
+            >
+                💡 Натисніть кнопку, щоб зафіксувати дію
+            </div>
+
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+            >
+                🚪 Вийти з екіпажу
+            </button>
+
+        </div>
+
+
+
+        <div class="history">
+
+
+            <div class="history-header">
+
+                <h2>
+                    📜 Історія подій
+                </h2>
+
+
+                <button
+                    class="refresh-btn"
+                    id="refreshBtn"
+                >
+                    🔄 Оновити
+                </button>
+
+            </div>
+
+
+            <div
+                id="historyContainer"
+            >
+                Завантаження...
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <!-- ПІДТРИМКА -->
+
+    <div class="support">
+
+        <div class="support-title">
+            Потрібна допомога?
+        </div>
+
+        <div class="support-links">
+
+            <a
+                href="https://t.me/V0VAN99"
+                target="_blank"
+                rel="noopener"
+                class="support-link"
+            >
+                ✈️ Telegram
+            </a>
+
+            <a
+                href="https://wa.me/380634196422"
+                target="_blank"
+                rel="noopener"
+                class="support-link"
+            >
+                💬 WhatsApp
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+// =================================================
+// URL GOOGLE APPS SCRIPT
+// =================================================
+
+const API_URL =
+    'https://script.google.com/macros/s/AKfycbyb3RguwytwEn3xA3uDga_OG0QamjwXxvqAUXXFDA_XtiO3bYZJ9GeDaPJ1h-TtvMm8TA/exec';
+
+
+// Поточний екіпаж
+
+let currentCrewCode = null;
+let currentCrewName = null;
+
+let isLoading = false;
+
+
+
+// =================================================
+// ПОКАЗ ЕКРАНІВ
+// =================================================
+
+function showScreen(screenId) {
+
+    const screens = [
+        'loginScreen',
+        'createScreen',
+        'createdScreen',
+        'crewScreen'
+    ];
+
+
+    screens.forEach(id => {
+
+        document
+            .getElementById(id)
+            .classList.add('hidden');
+
+    });
+
+
+    document
+        .getElementById(screenId)
+        .classList.remove('hidden');
+
+}
+
+
+
+// =================================================
+// ПОВІДОМЛЕННЯ
+// =================================================
+
+function showMessage(
+    elementId,
+    message,
+    isError = false
+) {
+
+    const messageDiv =
+        document.getElementById(elementId);
+
+
+    messageDiv.textContent = message;
+
+
+    messageDiv.className =
+        'message ' +
+        (
+            isError
+                ? 'error'
+                : 'success'
+        );
+
+}
+
+
+
+// =================================================
+// ПЕРЕВІРКА КОДУ
+// =================================================
+
+function validateCrewCode(code) {
+
+    if (code.length < 6 || code.length > 12) {
+
+        return 'Код повинен містити від 6 до 12 символів';
+
+    }
+
+
+    if (!/^[A-Za-z0-9]+$/.test(code)) {
+
+        return 'Код може містити тільки англійські букви та цифри';
+
+    }
+
+
+    if (!/[A-Za-z]/.test(code)) {
+
+        return 'Код повинен містити хоча б одну англійську букву';
+
+    }
+
+
+    if (!/[0-9]/.test(code)) {
+
+        return 'Код повинен містити хоча б одну цифру';
+
+    }
+
+
+    return null;
+
+}
+
+
+
+// =================================================
+// СТАТУС ЕКІПАЖУ
+// =================================================
+
+function showStatus(
+    message,
+    isError = false
+) {
+
+    const status =
+        document.getElementById(
+            'statusMessage'
+        );
+
+
+    status.innerHTML =
+        isError
+            ? '❌ ' + message
+            : '✅ ' + message;
+
+
+    status.style.background =
+        isError
+            ? '#fee'
+            : '#d4edda';
+
+
+    setTimeout(() => {
+
+        status.innerHTML =
+            '💡 Готовий до запису';
+
+        status.style.background =
+            '#f0f0f0';
+
+    }, 3000);
+
+}
+
+
+
+// =================================================
+// СТВОРЕННЯ ЕКІПАЖУ
+// =================================================
+
+async function createCrew() {
+
+    const crewName =
+        document
+            .getElementById('crewName')
+            .value
+            .trim();
+
+
+    const crewCode =
+        document
+            .getElementById('crewCode')
+            .value
+            .trim()
+            .toUpperCase();
+
+
+    const crewCodeConfirm =
+        document
+            .getElementById('crewCodeConfirm')
+            .value
+            .trim()
+            .toUpperCase();
+
+
+    if (!crewName) {
+
+        showMessage(
+            'createMessage',
+            'Введіть назву екіпажу',
+            true
+        );
+
+        return;
+    }
+
+
+    const validation =
+        validateCrewCode(crewCode);
+
+
+    if (validation) {
+
+        showMessage(
+            'createMessage',
+            validation,
+            true
+        );
+
+        return;
+    }
+
+
+    if (crewCode !== crewCodeConfirm) {
+
+        showMessage(
+            'createMessage',
+            'Коди не співпадають',
+            true
+        );
+
+        return;
+    }
+
+
+    const button =
+        document.getElementById('createBtn');
+
+
+    button.disabled = true;
+
+    button.textContent =
+        'Створення...';
+
+
+    try {
+
+        const params =
+            new URLSearchParams();
+
+
+        params.append(
+            'action',
+            'createCrew'
+        );
+
+
+        params.append(
+            'crewName',
+            crewName
+        );
+
+
+        params.append(
+            'crewCode',
+            crewCode
+        );
+
+
+        params.append(
+            't',
+            Date.now()
+        );
+
+
+        const requestUrl =
+            API_URL +
+            '?' +
+            params.toString();
+
+
+        const response =
+            await fetch(requestUrl);
+
+
+        const result =
+            await response.json();
+
+
+        if (result.success) {
+
+            currentCrewCode =
+                result.crewCode;
+
+            currentCrewName =
+                result.crewName;
+
+
+            localStorage.setItem(
+                'crewCode',
+                currentCrewCode
+            );
+
+
+            localStorage.setItem(
+                'crewName',
+                currentCrewName
+            );
+
+
+            document
+                .getElementById(
+                    'createdCrewName'
+                )
+                .textContent =
+                currentCrewName;
+
+
+            document
+                .getElementById(
+                    'createdCrewCode'
+                )
+                .textContent =
+                currentCrewCode;
+
+
+            showScreen(
+                'createdScreen'
+            );
+
+        }
+
+        else {
+
+            showMessage(
+                'createMessage',
+                result.message ||
+                'Не вдалося створити екіпаж',
+                true
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            'Помилка створення:',
+            error
+        );
+
+
+        showMessage(
+            'createMessage',
+            'Помилка: ' + error.message,
+            true
+        );
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            '➕ Створити екіпаж';
+
+    }
+
+}
+
+
+
+// =================================================
+// ВХІД В ЕКІПАЖ
+// =================================================
+
+async function loginCrew() {
+
+    const input =
+        document.getElementById(
+            'loginCode'
+        );
+
+
+    const crewCode =
+        input.value
+        .trim()
+        .toUpperCase();
+
+
+    if (!crewCode) {
+
+        showMessage(
+            'loginMessage',
+            'Введіть код екіпажу',
+            true
+        );
+
+        return;
+    }
+
+
+    const button =
+        document.getElementById(
+            'loginBtn'
+        );
+
+
+    button.disabled = true;
+
+
+    try {
+
+        const url =
+            `${API_URL}` +
+            `?action=loginCrew` +
+            `&crewCode=${encodeURIComponent(crewCode)}` +
+            `&t=${Date.now()}`;
+
+
+        const response =
+            await fetch(url);
+
+
+        const result =
+            await response.json();
+
+
+        if (result.success) {
+
+            currentCrewCode =
+                result.crewCode;
+
+
+            currentCrewName =
+                result.crewName;
+
+
+            localStorage.setItem(
+                'crewCode',
+                currentCrewCode
+            );
+
+
+            localStorage.setItem(
+                'crewName',
+                currentCrewName
+            );
+
+
+            openCrew();
+
+        }
+
+        else {
+
+            showMessage(
+                'loginMessage',
+                result.message,
+                true
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+
+        showMessage(
+            'loginMessage',
+            'Помилка зєднання з сервером',
+            true
+        );
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+    }
+
+}
+
+
+
+// =================================================
+// ВІДКРИТТЯ ЕКІПАЖУ
+// =================================================
+
+function openCrew() {
+
+    showScreen('crewScreen');
+
+
+    document
+        .getElementById(
+            'crewTitle'
+        )
+        .textContent =
+        currentCrewName;
+
+
+    document
+        .getElementById(
+            'crewCodeDisplay'
+        )
+        .textContent =
+        'Код екіпажу: ' +
+        currentCrewCode;
+
+
+    loadHistory();
+
+}
+
+
+
+// =================================================
+// ВИХІД
+// =================================================
+
+function logoutCrew() {
+
+    localStorage.removeItem(
+        'crewCode'
+    );
+
+
+    localStorage.removeItem(
+        'crewName'
+    );
+
+
+    currentCrewCode = null;
+    currentCrewName = null;
+
+
+    document
+        .getElementById(
+            'loginCode'
+        )
+        .value = '';
+
+
+    showScreen(
+        'loginScreen'
+    );
+
+}
+
+
+
+// =================================================
+// ДОДАТИ ПОДІЮ
+// =================================================
+
+async function addEvent(action) {
+
+    if (isLoading) {
+
+        showStatus(
+            'Зачекайте...',
+            true
+        );
+
+        return;
+    }
+
+
+    isLoading = true;
+
+
+    document
+        .getElementById(
+            'btnOn'
+        )
+        .disabled = true;
+
+
+    document
+        .getElementById(
+            'btnOff'
+        )
+        .disabled = true;
+
+
+    try {
+
+        const url =
+            `${API_URL}` +
+            `?action=${encodeURIComponent(action)}` +
+            `&crewCode=${encodeURIComponent(currentCrewCode)}` +
+            `&t=${Date.now()}`;
+
+
+        const response =
+            await fetch(url);
+
+
+        const result =
+            await response.json();
+
+
+        if (result.success) {
+
+            showStatus(
+                'Подію збережено!'
+            );
+
+
+            loadHistory();
+
+        }
+
+        else {
+
+            showStatus(
+                result.message,
+                true
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+
+        showStatus(
+            'Помилка зєднання',
+            true
+        );
+
+    }
+
+    finally {
+
+        isLoading = false;
+
+
+        document
+            .getElementById(
+                'btnOn'
+            )
+            .disabled = false;
+
+
+        document
+            .getElementById(
+                'btnOff'
+            )
+            .disabled = false;
+
+    }
+
+}
+
+
+
+// =================================================
+// ІСТОРІЯ
+// =================================================
+
+async function loadHistory() {
+
+    const container =
+        document.getElementById(
+            'historyContainer'
+        );
+
+
+    container.innerHTML =
+        '<div class="loading">Завантаження...</div>';
+
+
+    try {
+
+        const url =
+            `${API_URL}` +
+            `?action=getHistory` +
+            `&crewCode=${encodeURIComponent(currentCrewCode)}` +
+            `&t=${Date.now()}`;
+
+
+        const response =
+            await fetch(url);
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !result.success ||
+            !result.data ||
+            result.data.length === 0
+        ) {
+
+            container.innerHTML =
+                '<div class="loading">📭 Поки що немає подій</div>';
+
+            return;
+        }
+
+
+        const list =
+            document.createElement(
+                'div'
+            );
+
+
+        list.className =
+            'history-list';
+
+
+        result.data.forEach(item => {
+
+            const div =
+                document.createElement(
+                    'div'
+                );
+
+
+            div.className =
+                'history-item';
+
+
+            const emoji =
+                item.action === 'Увімкнулись'
+                    ? '🟢'
+                    : '🔴';
+
+
+            div.innerHTML = `
+                <div>${emoji}</div>
+
+                <div class="action">
+                    <strong>
+                        ${item.action}
+                    </strong>
+                </div>
+
+                <div class="timestamp">
+                    ${item.date}
+                    ${item.time}
+                </div>
+            `;
+
+
+            list.appendChild(div);
+
+        });
+
+
+        container.innerHTML = '';
+
+
+        container.appendChild(
+            list
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+
+        container.innerHTML =
+            '❌ Помилка завантаження історії';
+
+    }
+
+}
+
+
+
+// =================================================
+// КОПІЮВАННЯ КОДУ
+// =================================================
+
+async function copyCrewCode() {
+
+    const code =
+        currentCrewCode;
+
+
+    try {
+
+        await navigator
+            .clipboard
+            .writeText(code);
+
+
+        alert(
+            'Код екіпажу скопійовано!'
+        );
+
+    }
+
+    catch (error) {
+
+        alert(
+            'Не вдалося автоматично скопіювати код. Скопіюйте його вручну.'
+        );
+
+    }
+
+}
+
+
+
+// =================================================
+// ПОДІЇ КНОПОК
+// =================================================
+
+document
+    .getElementById('loginBtn')
+    .addEventListener(
+        'click',
+        loginCrew
+    );
+
+
+document
+    .getElementById('showCreateBtn')
+    .addEventListener(
+        'click',
+        () => {
+
+            showScreen(
+                'createScreen'
+            );
+
+        }
+    );
+
+
+document
+    .getElementById('backToLoginBtn')
+    .addEventListener(
+        'click',
+        () => {
+
+            showScreen(
+                'loginScreen'
+            );
+
+        }
+    );
+
+
+document
+    .getElementById('createBtn')
+    .addEventListener(
+        'click',
+        createCrew
+    );
+
+
+document
+    .getElementById('continueBtn')
+    .addEventListener(
+        'click',
+        openCrew
+    );
+
+
+document
+    .getElementById('copyCodeBtn')
+    .addEventListener(
+        'click',
+        copyCrewCode
+    );
+
+
+document
+    .getElementById('btnOn')
+    .addEventListener(
+        'click',
+        () => addEvent('Увімкнулись')
+    );
+
+
+document
+    .getElementById('btnOff')
+    .addEventListener(
+        'click',
+        () => addEvent('Вимкнулись')
+    );
+
+
+document
+    .getElementById('refreshBtn')
+    .addEventListener(
+        'click',
+        loadHistory
+    );
+
+
+document
+    .getElementById('logoutBtn')
+    .addEventListener(
+        'click',
+        logoutCrew
+    );
+
+
+
+// =================================================
+// ENTER ДЛЯ ВХОДУ
+// =================================================
+
+document
+    .getElementById('loginCode')
+    .addEventListener(
+        'keydown',
+        event => {
+
+            if (event.key === 'Enter') {
+
+                loginCrew();
+
+            }
+
+        }
+    );
+
+
+
+// =================================================
+// АВТОМАТИЧНИЙ ВХІД
+// =================================================
+
+window.addEventListener(
+    'DOMContentLoaded',
+    () => {
+
+        const savedCode =
+            localStorage.getItem(
+                'crewCode'
+            );
+
+
+        const savedName =
+            localStorage.getItem(
+                'crewName'
+            );
+
+
+        if (
+            savedCode &&
+            savedName
+        ) {
+
+            currentCrewCode =
+                savedCode;
+
+
+            currentCrewName =
+                savedName;
+
+
+            openCrew();
+
+        }
+
+        else {
+
+            showScreen(
+                'loginScreen'
+            );
+
+        }
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>
