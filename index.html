@@ -82,6 +82,46 @@
             margin: 1.5rem 0;
         }
 
+        .total-time-box {
+            background: #f8f9fa;
+            border-radius: 1rem;
+            padding: 0.7rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+
+        .total-time-title {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+
+
+        .total-time-value {
+            color: #333;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* .emoji {
+            font-size: 1.5rem;
+        }
+
+
+        .event-duration {
+            margin-top: 0.35rem;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+
+        .event-duration strong {
+            color: #333;
+        } */
+
 
         .form-group {
             margin-bottom: 1.2rem;
@@ -705,11 +745,23 @@
             </div>
 
 
-            <div
-                class="status"
-                id="statusMessage"
-            >
+            <div class="status" id="statusMessage">
                 💡 Натисніть кнопку, щоб зафіксувати дію
+            </div>
+
+            <div class="total-time-box">
+
+                <div class="total-time-title">
+                    ⏱️ Загальний час роботи
+                </div>
+
+                <div
+                    id="totalWorkTime"
+                    class="total-time-value"
+                >
+                    0 год 0 хв 0 сек
+                </div>
+
             </div>
 
 
@@ -1465,6 +1517,11 @@ async function loadHistory() {
             'historyContainer'
         );
 
+    const totalWorkTime =
+        document.getElementById(
+            'totalWorkTime'
+        );
+
 
     container.innerHTML =
         '<div class="loading">Завантаження...</div>';
@@ -1485,6 +1542,13 @@ async function loadHistory() {
 
         const result =
             await response.json();
+
+        if (totalWorkTime) {
+
+            totalWorkTime.textContent =
+                result.totalDuration ||
+                '0 год 0 хв 0 сек';
+        }
 
 
         if (
@@ -1528,19 +1592,49 @@ async function loadHistory() {
                     : '🔴';
 
 
+            let durationHtml = '';
+
+
+            if (
+                item.action === 'Вимкнулись' &&
+                item.duration
+            ) {
+
+                durationHtml = `
+                    <div class="event-duration">
+                        ⏱️ Працювали:
+                        <strong>${item.duration}</strong>
+                    </div>
+                `;
+            }
+
+
             div.innerHTML = `
-                <div>${emoji}</div>
+
+                <div class="emoji">
+                    ${emoji}
+                </div>
+
 
                 <div class="action">
+
                     <strong>
                         ${item.action}
                     </strong>
+
+                    ${durationHtml}
+
                 </div>
 
+
                 <div class="timestamp">
+
                     ${item.date}
+                    <br>
                     ${item.time}
+
                 </div>
+
             `;
 
 
