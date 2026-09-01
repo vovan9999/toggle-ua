@@ -4,12 +4,10 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport"content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://em-content.zobj.net/source/apple/391/bar-chart_1f4ca.png">
 
     <title>Облік увімкнень/вимкнень</title>
-
 
     <style>
 
@@ -19,24 +17,17 @@
             box-sizing: border-box;
         }
 
-
         body {
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-            background: linear-gradient(
-                135deg,
-                #667eea 0%,
-                #764ba2 100%
-            );
+            background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
             min-height: 100vh;
             padding: 2rem 1rem;
         }
-
 
         .container {
             max-width: 800px;
             margin: 0 auto;
         }
-
 
         .card,
         .history {
@@ -44,9 +35,8 @@
             border-radius: 1.5rem;
             padding: 2rem;
             box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
-
 
         h1,
         h2 {
@@ -58,23 +48,19 @@
             margin-left: 0.5rem;
         }
 
-
         .subtitle {
             color: #666;
             margin-bottom: 1.5rem;
             margin-left: 0.5rem;
         }
 
-
         .hidden {
             display: none !important;
         }
 
-
         .login-section {
             margin-bottom: 1.5rem;
         }
-
 
         .divider {
             border: none;
@@ -85,20 +71,18 @@
         .total-time-box {
             background: #f8f9fa;
             border-radius: 1rem;
-            padding: 0.7rem;
+            padding: 0.5rem;
             margin-top: 1rem;
             margin-bottom: 0.5rem;
             text-align: center;
             border: 1px solid #e0e0e0;
         }
 
-
         .total-time-title {
             color: #666;
             font-size: 0.95rem;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.2rem;
         }
-
 
         .total-time-value {
             color: #333;
@@ -106,27 +90,9 @@
             font-weight: bold;
         }
 
-        /* .emoji {
-            font-size: 1.5rem;
-        }
-
-
-        .event-duration {
-            margin-top: 0.35rem;
-            color: #555;
-            font-size: 0.85rem;
-        }
-
-
-        .event-duration strong {
-            color: #333;
-        } */
-
-
         .form-group {
             margin-bottom: 1.2rem;
         }
-
 
         .form-group label {
             display: block;
@@ -136,7 +102,6 @@
             margin-left: 0.5rem;
         }
 
-
         input {
             width: 100%;
             padding: 1rem;
@@ -145,12 +110,10 @@
             font-size: 1rem;
         }
 
-
         input:focus {
             outline: none;
             border-color: #667eea;
         }
-
 
         .hint {
             margin-top: 0.5rem;
@@ -158,7 +121,6 @@
             font-size: 0.85rem;
             line-height: 1.5;
         }
-
 
         button {
             border: none;
@@ -170,17 +132,14 @@
             transition: 0.2s;
         }
 
-
         button:active {
             transform: scale(0.97);
         }
-
 
         button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
-
 
         .btn-primary {
             width: 100%;
@@ -188,13 +147,11 @@
             color: white;
         }
 
-
         .btn-create {
             width: 100%;
             background: #11998e;
             color: white;
         }
-
 
         .btn-secondary {
             width: 100%;
@@ -203,47 +160,110 @@
             margin-top: 0.8rem;
         }
 
-
         .buttons {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
 
-
         .buttons button {
             flex: 1;
             font-size: 1.2rem;
         }
 
-
         .btn-on {
-            background: linear-gradient(
-                135deg,
-                #11998e,
-                #38ef7d
-            );
+            background: linear-gradient(135deg,#11998e,#38ef7d);
             color: white;
         }
-
 
         .btn-off {
-            background: linear-gradient(
-                135deg,
-                #eb3349,
-                #f45c43
-            );
+            background: linear-gradient(135deg,#eb3349,#f45c43);
             color: white;
         }
-
 
         .status {
             background: #f0f0f0;
-            padding: 1rem;
+            padding: 0.7rem;
             border-radius: 1rem;
             text-align: center;
         }
 
+        /* ========================= */
+        /* ВИБІР ПЕРІОДУ */
+        /* ========================= */
+
+        .period-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 1rem;
+            padding: 0.7rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .period-title {
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.7rem;
+            font-size: 1.05rem;
+        }
+
+        .period-fields {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .period-field {
+            flex: 1;
+        }
+
+        .period-field label {
+            display: block;
+            color: #555;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .period-field input {
+            margin-bottom: 0;
+            background: white;
+        }
+
+        .period-btn {
+            width: 100%;
+            background: #667eea;
+            color: white;
+        }
+
+        .period-message {
+            text-align: center;
+            margin-top: 0.7rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .crew-name {
+            margin-bottom: 0.3rem;
+        }
+
+        .crew-code {
+            margin-left: 0;
+            margin-bottom: 1.2rem;
+        }
+
+
+        /* Час окремої події */
+
+        .event-duration {
+            margin-top: 0.35rem;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* КІНЕЦЬ ВИБОРУ ПЕРІОДУ */
 
         .history-header {
             display: flex;
@@ -253,12 +273,10 @@
             margin-bottom: 1rem;
         }
 
-
         .history-list {
             max-height: 500px;
             overflow-y: auto;
         }
-
 
         .history-item {
             padding: 1rem;
@@ -268,31 +286,26 @@
             align-items: center;
         }
 
-
         .action {
             flex: 1;
         }
-
 
         .timestamp {
             color: #666;
             font-family: monospace;
         }
 
-
         .refresh-btn {
             background: #3498db;
             color: white;
         }
 
-
         .logout-btn {
             background: #6c757d;
             color: white;
             width: 100%;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
-
 
         .message {
             margin-top: 1rem;
@@ -302,13 +315,11 @@
             display: none;
         }
 
-
         .message.success {
             display: block;
             background: #d4edda;
             color: #155724;
         }
-
 
         .message.error {
             display: block;
@@ -316,14 +327,12 @@
             color: #721c24;
         }
 
-
         .success-box {
             background: #e8f5e9;
             padding: 1.5rem;
             border-radius: 1rem;
             text-align: center;
         }
-
 
         .generated-code {
             font-size: 2rem;
@@ -334,9 +343,7 @@
             font-family: monospace;
         }
 
-        /* ========================= */
         /* ПІДТРИМКА */
-        /* ========================= */
 
         .support {
             text-align: center;
@@ -382,7 +389,6 @@
             transform: scale(0.97);
         }
 
-
         @media (max-width: 600px) {
 
             .card,
@@ -390,15 +396,18 @@
                 padding: 1.5rem;
             }
 
-
             .buttons {
                 flex-direction: column;
             }
 
-
             .history-header {
                 flex-direction: column;
                 align-items: stretch;
+            }
+
+            .period-fields {
+                flex-direction: column;
+                gap: 0.8rem;
             }
 
         }
@@ -413,15 +422,10 @@
 
 <div class="container">
 
-
-    <!-- ========================= -->
     <!-- ВХІД В ЕКІПАЖ -->
-    <!-- ========================= -->
 
     <div
-        class="card"
-        id="loginScreen"
-    >
+        class="card" id="loginScreen">
 
         <h1>
             <span>📊</span>
@@ -448,65 +452,37 @@
 
             <div class="form-group">
 
-                <label for="loginCode">
-                    Код екіпажу
-                </label>
+                <label for="loginCode"> Код екіпажу </label>
 
-
-                <input
-                    type="text"
-                    id="loginCode"
-                    placeholder="Введіть код екіпажу"
-                    maxlength="12"
-                    autocomplete="off"
-                >
+                <input type="text" id="loginCode" placeholder="Введіть код екіпажу" maxlength="12" autocomplete="off">
 
             </div>
 
 
             <button
-                class="btn-primary"
-                id="loginBtn"
-            >
+                class="btn-primary" id="loginBtn">
                 🔐 Увійти
             </button>
 
         </div>
 
-
         <hr class="divider">
-
 
         <div class="subtitle">
             Немає створеного екіпажу?
         </div>
 
-
-        <button
-            class="btn-create"
-            id="showCreateBtn"
-        >
+        <button class="btn-create" id="showCreateBtn">
             ➕ Створити новий екіпаж
         </button>
 
-
-        <div
-            id="loginMessage"
-            class="message"
-        ></div>
+        <div id="loginMessage" class="message"></div>
 
     </div>
 
-
-
-    <!-- ========================= -->
     <!-- СТВОРЕННЯ ЕКІПАЖУ -->
-    <!-- ========================= -->
 
-    <div
-        class="card hidden"
-        id="createScreen"
-    >
+    <div class="card hidden" id="createScreen">
 
         <h1>➕ Створення екіпажу</h1>
 
@@ -514,23 +490,15 @@
             Введіть назву та придумайте код для свого екіпажу
         </div>
 
-
         <div class="form-group">
 
             <label for="crewName">
                 Назва екіпажу
             </label>
 
-
-            <input
-                type="text"
-                id="crewName"
-                placeholder="Наприклад: Екіпаж Альфа"
-                maxlength="50"
-            >
+            <input type="text" id="crewName" placeholder="Наприклад: Екіпаж Альфа" maxlength="50">
 
         </div>
-
 
         <div class="form-group">
 
@@ -538,15 +506,7 @@
                 Код екіпажу
             </label>
 
-
-            <input
-                type="text"
-                id="crewCode"
-                placeholder="Наприклад: K7M42P"
-                maxlength="12"
-                autocomplete="off"
-            >
-
+            <input type="text" id="crewCode" placeholder="Наприклад: K7M42P" maxlength="12" autocomplete="off">
 
             <div class="hint">
 
@@ -562,58 +522,31 @@
 
         </div>
 
-
         <div class="form-group">
 
             <label for="crewCodeConfirm">
                 Повторіть код
             </label>
 
-
-            <input
-                type="text"
-                id="crewCodeConfirm"
-                placeholder="Повторіть код екіпажу"
-                maxlength="12"
-                autocomplete="off"
-            >
+            <input type="text" id="crewCodeConfirm" placeholder="Повторіть код екіпажу" maxlength="12" autocomplete="off">
 
         </div>
 
-
-        <button
-            class="btn-create"
-            id="createBtn"
-        >
+        <button class="btn-create" id="createBtn">
             ➕ Створити екіпаж
         </button>
 
-
-        <button
-            class="btn-secondary"
-            id="backToLoginBtn"
-        >
+        <button class="btn-secondary" id="backToLoginBtn">
             ← Назад
         </button>
 
-
-        <div
-            id="createMessage"
-            class="message"
-        ></div>
+        <div id="createMessage" class="message"></div>
 
     </div>
 
-
-
-    <!-- ========================= -->
     <!-- ЕКІПАЖ СТВОРЕНО -->
-    <!-- ========================= -->
 
-    <div
-        class="card hidden"
-        id="createdScreen"
-    >
+    <div class="card hidden" id="createdScreen">
 
         <div class="success-box">
 
@@ -621,32 +554,23 @@
                 ✅
             </div>
 
-
             <h2>
                 Екіпаж успішно створено
             </h2>
-
 
             <p>
                 Назва екіпажу:
             </p>
 
-
             <p style="font-size: 1.2rem; margin-top: 0.3rem;">
                 <strong id="createdCrewName"></strong>
             </p>
-
 
             <p style="margin-top: 1.5rem;">
                 Код екіпажу:
             </p>
 
-
-            <div
-                class="generated-code"
-                id="createdCrewCode"
-            ></div>
-
+            <div class="generated-code" id="createdCrewCode"></div>
 
             <p>
                 ⚠️ Збережіть цей код.
@@ -655,123 +579,127 @@
 
         </div>
 
-
-        <button
-            class="btn-primary"
-            id="copyCodeBtn"
-            style="margin-top: 1rem;"
-        >
+        <button class="btn-primary" id="copyCodeBtn" style="margin-top: 1rem;">
             📋 Скопіювати код
         </button>
 
 
-        <button
-            class="btn-create"
-            id="continueBtn"
-            style="margin-top: 0.8rem;"
-        >
+        <button class="btn-create" id="continueBtn" style="margin-top: 0.8rem;">
             🚑 Продовжити
         </button>
 
     </div>
 
 
-
     <!-- ========================= -->
     <!-- ЕКІПАЖ -->
     <!-- ========================= -->
 
-    <div
-        id="crewScreen"
-        class="hidden"
-    >
-
+    <div id="crewScreen" class="hidden">
 
         <div class="card">
 
             <h1>
-    <span>📊</span>
-    Облік увімкнень/вимкнень
-</h1>
+                <span>📊</span>
+                Облік увімкнень/вимкнень
+            </h1>
 
-<div class="subtitle">
-    Спільна система обліку для екіпажу
-</div>
+            <div class="subtitle">
+                Спільна система обліку для екіпажу
+            </div>
 
-<hr class="divider">
+            <hr class="divider">
 
-<h2 style="margin-bottom: 0.5rem;">
-    
-    <span id="crewTitle">
-        Екіпаж
-    </span>
-</h2>
+            <h2 class="crew-name">
+                👥
+                <span id="crewTitle">
+                    Екіпаж
+                </span>
+            </h2>
 
-<div
-    class="subtitle"
-    id="crewCodeDisplay"
-></div>
+            <div class="subtitle crew-code" id="crewCodeDisplay"></div>
 
-
-            <div
-                class="subtitle"
-                id="crewCodeDisplay"
-            ></div>
-
+            <!-- КНОПКИ ВКЛ / ВИКЛ -->
 
             <div class="buttons">
 
-                <button
-                    class="btn-on"
-                    id="btnOn"
-                >
+                <button class="btn-on" id="btnOn">
                     ✅ Увімкнулись
                 </button>
 
-
-                <button
-                    class="btn-off"
-                    id="btnOff"
-                >
+                <button class="btn-off" id="btnOff">
                     ❌ Вимкнулись
                 </button>
 
             </div>
 
-
             <div class="status" id="statusMessage">
                 💡 Натисніть кнопку, щоб зафіксувати дію
             </div>
 
+            <!-- ВИБІР ПЕРІОДУ -->
+
+            <div class="period-box">
+
+                <div class="period-title">
+                    📅 Період звіту
+                </div>
+
+                <div class="period-fields">
+
+                    <div class="period-field">
+
+                        <label for="startDate"> Від </label>
+
+                        <input type="date" id="startDate">
+
+                    </div>
+
+
+                    <div class="period-field">
+
+                        <label for="endDate">
+                            До
+                        </label>
+
+                        <input type="date" id="endDate">
+
+                    </div>
+
+                </div>
+
+                <button class="period-btn" id="periodBtn">
+                    📊 Показати за період
+                </button>
+
+                <div id="periodMessage" class="period-message"></div>
+
+            </div>
+
+            <!-- ЗАГАЛЬНИЙ ЧАС -->
+
             <div class="total-time-box">
 
                 <div class="total-time-title">
-                    ⏱️ Загальний час роботи
+                    ⏱️ Загальний час роботи за період
                 </div>
 
-                <div
-                    id="totalWorkTime"
-                    class="total-time-value"
-                >
+                <div id="totalWorkTime" class="total-time-value">
                     0 год 0 хв 0 сек
                 </div>
 
             </div>
 
 
-            <button
-                class="logout-btn"
-                id="logoutBtn"
-            >
+            <button class="logout-btn" id="logoutBtn">
                 🚪 Вийти з екіпажу
             </button>
 
         </div>
 
-
+        <!-- ІСТОРІЯ -->
 
         <div class="history">
-
 
             <div class="history-header">
 
@@ -779,26 +707,17 @@
                     📜 Історія подій
                 </h2>
 
-
-                <button
-                    class="refresh-btn"
-                    id="refreshBtn"
-                >
+                <button class="refresh-btn" id="refreshBtn">
                     🔄 Оновити
                 </button>
 
             </div>
 
-
-            <div
-                id="historyContainer"
-            >
+            <div id="historyContainer">
                 Завантаження...
             </div>
 
-
         </div>
-
 
     </div>
 
@@ -832,14 +751,9 @@
 
 </div>
 
-
-
 <script>
 
-
-// =================================================
 // URL GOOGLE APPS SCRIPT
-// =================================================
 
 const API_URL =
     'https://script.google.com/macros/s/AKfycbz74ziRNXE9vzwc3cha-q28TeNwNoOFR4LdcSlhrk6N2AKgqtlp5Qy31yRlg-cglUTrPQ/exec';
@@ -851,8 +765,6 @@ let currentCrewCode = null;
 let currentCrewName = null;
 
 let isLoading = false;
-
-
 
 // =================================================
 // ПОКАЗ ЕКРАНІВ
@@ -867,7 +779,6 @@ function showScreen(screenId) {
         'crewScreen'
     ];
 
-
     screens.forEach(id => {
 
         document
@@ -876,14 +787,11 @@ function showScreen(screenId) {
 
     });
 
-
     document
         .getElementById(screenId)
         .classList.remove('hidden');
 
 }
-
-
 
 // =================================================
 // ПОВІДОМЛЕННЯ
@@ -901,7 +809,6 @@ function showMessage(
 
     messageDiv.textContent = message;
 
-
     messageDiv.className =
         'message ' +
         (
@@ -911,9 +818,6 @@ function showMessage(
         );
 
 }
-
-
-
 // =================================================
 // ПЕРЕВІРКА КОДУ
 // =================================================
@@ -926,13 +830,11 @@ function validateCrewCode(code) {
 
     }
 
-
     if (!/^[A-Za-z0-9]+$/.test(code)) {
 
         return 'Код може містити тільки англійські букви та цифри';
 
     }
-
 
     if (!/[A-Za-z]/.test(code)) {
 
@@ -940,20 +842,15 @@ function validateCrewCode(code) {
 
     }
 
-
     if (!/[0-9]/.test(code)) {
 
         return 'Код повинен містити хоча б одну цифру';
 
     }
 
-
     return null;
 
 }
-
-
-
 // =================================================
 // СТАТУС ЕКІПАЖУ
 // =================================================
@@ -992,9 +889,6 @@ function showStatus(
     }, 3000);
 
 }
-
-
-
 // =================================================
 // СТВОРЕННЯ ЕКІПАЖУ
 // =================================================
@@ -1035,7 +929,6 @@ async function createCrew() {
         return;
     }
 
-
     const validation =
         validateCrewCode(crewCode);
 
@@ -1051,7 +944,6 @@ async function createCrew() {
         return;
     }
 
-
     if (crewCode !== crewCodeConfirm) {
 
         showMessage(
@@ -1062,7 +954,6 @@ async function createCrew() {
 
         return;
     }
-
 
     const button =
         document.getElementById('createBtn');
@@ -1200,9 +1091,6 @@ async function createCrew() {
     }
 
 }
-
-
-
 // =================================================
 // ВХІД В ЕКІПАЖ
 // =================================================
@@ -1232,7 +1120,6 @@ async function loginCrew() {
         return;
     }
 
-
     const button =
         document.getElementById(
             'loginBtn'
@@ -1240,7 +1127,6 @@ async function loginCrew() {
 
 
     button.disabled = true;
-
 
     try {
 
@@ -1317,9 +1203,6 @@ async function loginCrew() {
     }
 
 }
-
-
-
 // =================================================
 // ВІДКРИТТЯ ЕКІПАЖУ
 // =================================================
@@ -1346,12 +1229,14 @@ function openCrew() {
         currentCrewCode;
 
 
+    // Встановлюємо поточний місяць
+    setCurrentMonth();
+
+
+    // Завантажуємо історію за поточний місяць
     loadHistory();
 
 }
-
-
-
 // =================================================
 // ВИХІД
 // =================================================
@@ -1384,9 +1269,6 @@ function logoutCrew() {
     );
 
 }
-
-
-
 // =================================================
 // ДОДАТИ ПОДІЮ
 // =================================================
@@ -1493,11 +1375,8 @@ async function addEvent(action) {
     }
 
 }
-
-
-
 // =================================================
-// ІСТОРІЯ
+// ІСТОРІЯ ЗА ВИБРАНИЙ ПЕРІОД
 // =================================================
 
 async function loadHistory() {
@@ -1507,10 +1386,23 @@ async function loadHistory() {
             'historyContainer'
         );
 
+
     const totalWorkTime =
         document.getElementById(
             'totalWorkTime'
         );
+
+
+    const startDate =
+        document.getElementById(
+            'startDate'
+        ).value;
+
+
+    const endDate =
+        document.getElementById(
+            'endDate'
+        ).value;
 
 
     container.innerHTML =
@@ -1519,10 +1411,26 @@ async function loadHistory() {
 
     try {
 
-        const url =
+        let url =
             `${API_URL}` +
             `?action=getHistory` +
-            `&crewCode=${encodeURIComponent(currentCrewCode)}` +
+            `&crewCode=${encodeURIComponent(currentCrewCode)}`;
+
+
+        // Додаємо період
+        if (
+            startDate &&
+            endDate
+        ) {
+
+            url +=
+                `&startDate=${encodeURIComponent(startDate)}` +
+                `&endDate=${encodeURIComponent(endDate)}`;
+
+        }
+
+
+        url +=
             `&t=${Date.now()}`;
 
 
@@ -1533,24 +1441,46 @@ async function loadHistory() {
         const result =
             await response.json();
 
-        if (totalWorkTime) {
 
-            totalWorkTime.textContent =
-                result.totalDuration ||
-                '0 год 0 хв 0 сек';
+        if (!result.success) {
+
+            container.innerHTML =
+                '<div class="loading">❌ Помилка завантаження</div>';
+
+            return;
+
         }
 
 
+        // -------------------------------------------------
+        // ЗАГАЛЬНИЙ ЧАС ЗА ПЕРІОД
+        // -------------------------------------------------
+
+        if (totalWorkTime) {
+
+            totalWorkTime.textContent =
+                result.periodDuration ||
+                '0 год 0 хв 0 сек';
+
+        }
+
+
+        // -------------------------------------------------
+        // ІСТОРІЯ
+        // -------------------------------------------------
+
         if (
-            !result.success ||
             !result.data ||
             result.data.length === 0
         ) {
 
             container.innerHTML =
-                '<div class="loading">📭 Поки що немає подій</div>';
+                '<div class="loading">' +
+                '📭 За вибраний період записів немає' +
+                '</div>';
 
             return;
+
         }
 
 
@@ -1593,9 +1523,12 @@ async function loadHistory() {
                 durationHtml = `
                     <div class="event-duration">
                         ⏱️ Працювали:
-                        <strong>${item.duration}</strong>
+                        <strong>
+                            ${item.duration}
+                        </strong>
                     </div>
                 `;
+
             }
 
 
@@ -1604,7 +1537,6 @@ async function loadHistory() {
                 <div class="emoji">
                     ${emoji}
                 </div>
-
 
                 <div class="action">
 
@@ -1616,11 +1548,12 @@ async function loadHistory() {
 
                 </div>
 
-
                 <div class="timestamp">
 
                     ${item.date}
+
                     <br>
+
                     ${item.time}
 
                 </div>
@@ -1653,9 +1586,6 @@ async function loadHistory() {
     }
 
 }
-
-
-
 // =================================================
 // КОПІЮВАННЯ КОДУ
 // =================================================
@@ -1688,9 +1618,6 @@ async function copyCrewCode() {
     }
 
 }
-
-
-
 // =================================================
 // ПОДІЇ КНОПОК
 // =================================================
@@ -1786,7 +1713,161 @@ document
         logoutCrew
     );
 
+// =================================================
+// ВИБІР ПЕРІОДУ
+// =================================================
 
+document
+    .getElementById('periodBtn')
+    .addEventListener(
+        'click',
+        () => {
+
+            const startDate =
+                document
+                    .getElementById(
+                        'startDate'
+                    )
+                    .value;
+
+
+            const endDate =
+                document
+                    .getElementById(
+                        'endDate'
+                    )
+                    .value;
+
+
+            const message =
+                document
+                    .getElementById(
+                        'periodMessage'
+                    );
+
+
+            if (!startDate) {
+
+                message.textContent =
+                    '⚠️ Виберіть початкову дату';
+
+                return;
+
+            }
+
+
+            if (!endDate) {
+
+                message.textContent =
+                    '⚠️ Виберіть кінцеву дату';
+
+                return;
+
+            }
+
+
+            if (
+                startDate > endDate
+            ) {
+
+                message.textContent =
+                    '⚠️ Початкова дата не може бути пізніше кінцевої';
+
+                return;
+
+            }
+
+
+            message.textContent =
+                'Завантаження...';
+
+
+            loadHistory();
+
+
+            setTimeout(() => {
+
+                message.textContent =
+                    `Період: ${formatDateForDisplay(startDate)} — ${formatDateForDisplay(endDate)}`;
+
+            }, 500);
+
+        }
+    );
+
+// =================================================
+// ФОРМАТУВАННЯ ДАТИ
+// =================================================
+
+function formatDateForDisplay(dateString) {
+
+    const parts =
+        dateString.split('-');
+
+
+    if (parts.length !== 3) {
+        return dateString;
+    }
+
+
+    return (
+        parts[2] +
+        '.' +
+        parts[1] +
+        '.' +
+        parts[0]
+    );
+
+}
+
+// =================================================
+// ВСТАНОВИТИ ПОТОЧНИЙ МІСЯЦЬ
+// =================================================
+
+function setCurrentMonth() {
+
+    const now =
+        new Date();
+
+
+    const year =
+        now.getFullYear();
+
+
+    const month =
+        String(
+            now.getMonth() + 1
+        ).padStart(2, '0');
+
+
+    const lastDay =
+        new Date(
+            year,
+            now.getMonth() + 1,
+            0
+        ).getDate();
+
+
+    const firstDate =
+        `${year}-${month}-01`;
+
+
+    const lastDate =
+        `${year}-${month}-${String(lastDay).padStart(2, '0')}`;
+
+
+    document
+        .getElementById('startDate')
+        .value =
+        firstDate;
+
+
+    document
+        .getElementById('endDate')
+        .value =
+        lastDate;
+
+}
 
 // =================================================
 // ENTER ДЛЯ ВХОДУ
@@ -1806,8 +1887,6 @@ document
 
         }
     );
-
-
 
 // =================================================
 // АВТОМАТИЧНИЙ ВХІД
