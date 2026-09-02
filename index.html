@@ -16,12 +16,16 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
+        span {
+            color: black;
+        }
 
         body {
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
             background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
             min-height: 100vh;
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
         }
 
         .container {
@@ -32,16 +36,20 @@
         .card,
         .history {
             background: white;
-            border-radius: 1.5rem;
-            padding: 2rem;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
             box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-            margin-bottom: 1rem;
+            margin-bottom:0.8rem;
         }
 
-        h1,
+        h1 {
+            font-size:1.45rem;
+            margin-bottom:.5rem;
+        }
+
         h2 {
-            color: #333;
-            margin-bottom: 1rem;
+            font-size:1.15rem;
+            margin-bottom:.5rem;
         }
 
         .section-title {
@@ -50,7 +58,7 @@
 
         .subtitle {
             color: #666;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             margin-left: 0.5rem;
         }
 
@@ -65,17 +73,13 @@
         .divider {
             border: none;
             border-top: 1px solid #ddd;
-            margin: 1.5rem 0;
+            margin: 1.5rem 0 0.5rem 0;
         }
 
         .total-time-box {
-            background: #f8f9fa;
-            border-radius: 1rem;
-            padding: 0.5rem;
             margin-top: 1rem;
             margin-bottom: 0.5rem;
             text-align: center;
-            border: 1px solid #e0e0e0;
         }
 
         .total-time-title {
@@ -86,7 +90,7 @@
 
         .total-time-value {
             color: #333;
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: bold;
         }
 
@@ -124,9 +128,9 @@
 
         button {
             border: none;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            font-size: 1rem;
+            padding:.75rem;
+            font-size:.95rem;
+            border-radius:.65rem;
             font-weight: bold;
             cursor: pointer;
             transition: 0.2s;
@@ -163,7 +167,7 @@
         .buttons {
             display: flex;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .buttons button {
@@ -181,38 +185,84 @@
             color: white;
         }
 
-        .status {
-            background: #f0f0f0;
-            padding: 0.7rem;
-            border-radius: 1rem;
-            text-align: center;
+        .btn-on,
+        .btn-off {
+            transition: .25s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,.15);
         }
 
-        /* ========================= */
-        /* ВИБІР ПЕРІОДУ */
-        /* ========================= */
+
+        .btn-on:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.08);
+            box-shadow:0 10px 20px rgba(40,167,69,.35);
+        }
+
+
+        .btn-off:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.08);
+            box-shadow:0 10px 20px rgba(220,53,69,.35);
+        }
+
+
+        .btn-on:active,
+        .btn-off:active {
+            transform:scale(.96);
+        }
+
+        .status {
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:6px;
+            margin:8px 0 12px;
+            padding:8px 12px;
+            background:rgba(102,126,234,0.08);
+            border-radius:20px;
+            color:#555;
+            font-size:0.85rem;
+            border:1px solid rgba(102,126,234,0.15);
+            transition:.3s;
+        }
+
+        .status.success {
+            background:#e8f5e9;
+            color:#137333;
+            border-color:#c8e6c9;
+        }
+
+        .status.error {
+            background:#fdecea;
+            color:#b3261e;
+            border-color:#f5c2c7;
+        }
+
+        /* СТИЛЬНИЙ ВИБІР ПЕРІОДУ */
 
         .period-box {
-            background: #f8f9fa;
-            border: 1px solid #e0e0e0;
-            border-radius: 1rem;
-            padding: 0.7rem;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
+            background: linear-gradient(145deg, #f8f9ff, #ffffff);
+            border: 1px solid #e5e7f5;
+            border-radius: 14px;
+            padding: 10px 12px;
+            /* margin: 8px 0; */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .period-title {
-            text-align: center;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
             color: #333;
-            margin-bottom: 0.7rem;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
         }
 
         .period-fields {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         .period-field {
@@ -221,28 +271,116 @@
 
         .period-field label {
             display: block;
-            color: #555;
+            font-size: .7rem;
+            color: #666;
+            margin-bottom: 3px;
             font-weight: 600;
-            margin-bottom: 0.4rem;
-            font-size: 0.9rem;
         }
 
         .period-field input {
-            margin-bottom: 0;
+            height: 36px;
+            padding: 0 8px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
             background: white;
+            font-size: .8rem;
+            color: #333;
+            transition: .2s;
         }
 
-        .period-btn {
-            width: 100%;
-            background: #667eea;
-            color: white;
+        .period-field input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,.15);
+        }
+
+        .apply-period-btn {
+
+            display:none;
+            width:auto;
+            margin:16px auto 0;
+            padding:7px 20px;
+            border-radius:20px;
+            background:#667eea;
+            color:white;
+            font-size:.8rem;
+            font-weight:600;
         }
 
         .period-message {
-            text-align: center;
-            margin-top: 0.7rem;
-            color: #666;
-            font-size: 0.9rem;
+            margin-top:8px;
+            font-size:0.8rem;
+        }
+
+        .quick-periods {
+            display:flex;
+            gap:8px;
+            margin-bottom:12px;
+        }
+
+
+        .quick-btn {
+            flex:1;
+            padding:7px 4px;
+            border-radius:10px;
+            border:1px solid #ddd;
+            background:white;
+            color:#555;
+            font-size:.8rem;
+            font-weight:600;
+            transition:.25s ease;
+        }
+
+        .quick-btn:hover:not(.active) {
+            background:#eef1ff;
+            color:#667eea;
+            border-color:#667eea;
+            transform:translateY(-2px);
+            box-shadow:0 5px 12px rgba(102,126,234,.18);
+        }
+
+
+        .quick-btn.active {
+            background:linear-gradient(135deg,#667eea,#764ba2);
+            color:white;
+            border-color:transparent;
+            border:none;
+            box-shadow: 0 6px 15px rgba(102,126,234,.35);
+            transform:translateY(-1px)
+        }
+
+
+
+        #customPeriodFields {
+            display:none;
+        }
+
+
+
+        .period-summary {
+            margin-top:12px;
+            padding:10px 14px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:8px;
+            background:rgba(102,126,234,0.08);
+            border-radius:12px;
+
+            color:#666;
+            font-size:1rem;
+        }
+
+
+        .period-summary strong {
+            font-size:1rem;
+            color:#333;
+        }
+
+
+        .period-summary span {
+            font-size:1.05rem;
+            font-weight:700;
+            color:#667eea;
         }
 
         .crew-name {
@@ -296,15 +434,37 @@
         }
 
         .refresh-btn {
-            background: #3498db;
-            color: white;
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            color:white;
+            padding:7px 14px;
+            border-radius:12px;
+            font-size:.85rem;
+            font-weight:600;
+            display:inline-flex;
+            align-items:center;
+            gap:5px;
+            box-shadow:0 4px 12px rgba(102,126,234,.25);
+            transition:.2s;
         }
 
-        .logout-btn {
-            background: #6c757d;
-            color: white;
-            width: 100%;
-            margin-top: 0.5rem;
+        .refresh-btn:hover {
+            transform:translateY(-2px);
+            box-shadow:0 6px 16px rgba(102,126,234,.35);
+        }
+        .crew-header {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:10px;
+        }
+
+        .logout-top {
+            background:#6c757d;
+            color:white;
+            padding:8px 12px;
+            border-radius:10px;
+            font-size:.8rem;
+            white-space:nowrap;
         }
 
         .message {
@@ -590,19 +750,22 @@
 
     </div>
 
-
-    <!-- ========================= -->
     <!-- ЕКІПАЖ -->
-    <!-- ========================= -->
 
     <div id="crewScreen" class="hidden">
 
         <div class="card">
 
-            <h1>
-                <span>📊</span>
-                Облік увімкнень/вимкнень
-            </h1>
+            <div class="crew-header">
+                <h1>
+                    <span>📊</span>
+                    Облік увімкнень/вимкнень
+                </h1>
+
+                <button class="logout-top" id="logoutBtn">
+                    🚪 Вийти з екіпажу
+                </button>
+            </div>
 
             <div class="subtitle">
                 Спільна система обліку для екіпажу
@@ -624,11 +787,11 @@
             <div class="buttons">
 
                 <button class="btn-on" id="btnOn">
-                    ✅ Увімкнулись
+                    <span>✔</span> Увімкнулись
                 </button>
 
                 <button class="btn-off" id="btnOff">
-                    ❌ Вимкнулись
+                    <span>✖</span> Вимкнулись
                 </button>
 
             </div>
@@ -645,11 +808,36 @@
                     📅 Період звіту
                 </div>
 
-                <div class="period-fields">
+
+                <div class="quick-periods">
+
+                    <button class="quick-btn" data-period="today">
+                        Сьогодні
+                    </button>
+
+                    <button class="quick-btn" data-period="week">
+                        7 днів
+                    </button>
+
+                    <button class="quick-btn active" data-period="month">
+                        Місяць
+                    </button>
+
+                    <button class="quick-btn" data-period="custom">
+                        Свій
+                    </button>
+
+                </div>
+
+                <!-- Календар з'являється тільки для "Свій" -->
+
+                <div class="period-fields" id="customPeriodFields">
 
                     <div class="period-field">
 
-                        <label for="startDate"> Від </label>
+                        <label>
+                            Від
+                        </label>
 
                         <input type="date" id="startDate">
 
@@ -658,7 +846,7 @@
 
                     <div class="period-field">
 
-                        <label for="endDate">
+                        <label>
                             До
                         </label>
 
@@ -668,32 +856,23 @@
 
                 </div>
 
-                <button class="period-btn" id="periodBtn">
-                    📊 Показати за період
+                <button class="apply-period-btn" id="applyPeriodBtn">
+                    ✓ Застосувати
                 </button>
+
+                <div class="period-summary">
+
+                    <strong>Загальний час:</strong>
+
+                    <span id="totalWorkTime">
+                        0 год 0 хв 0 сек
+                    </span>
+
+                </div>
 
                 <div id="periodMessage" class="period-message"></div>
 
             </div>
-
-            <!-- ЗАГАЛЬНИЙ ЧАС -->
-
-            <div class="total-time-box">
-
-                <div class="total-time-title">
-                    ⏱️ Загальний час роботи за період
-                </div>
-
-                <div id="totalWorkTime" class="total-time-value">
-                    0 год 0 хв 0 сек
-                </div>
-
-            </div>
-
-
-            <button class="logout-btn" id="logoutBtn">
-                🚪 Вийти з екіпажу
-            </button>
 
         </div>
 
@@ -708,7 +887,7 @@
                 </h2>
 
                 <button class="refresh-btn" id="refreshBtn">
-                    🔄 Оновити
+                    <span>⟳</span> Оновити
                 </button>
 
             </div>
@@ -781,46 +960,29 @@ function showScreen(screenId) {
 
     screens.forEach(id => {
 
-        document
-            .getElementById(id)
-            .classList.add('hidden');
+        document.getElementById(id).classList.add('hidden');
 
     });
 
     document
-        .getElementById(screenId)
-        .classList.remove('hidden');
+        .getElementById(screenId).classList.remove('hidden');
 
 }
 
-// =================================================
 // ПОВІДОМЛЕННЯ
-// =================================================
 
-function showMessage(
-    elementId,
-    message,
-    isError = false
-) {
+function showMessage(elementId,message,isError = false) {
 
-    const messageDiv =
-        document.getElementById(elementId);
+    const messageDiv =document.getElementById(elementId);
 
 
     messageDiv.textContent = message;
 
-    messageDiv.className =
-        'message ' +
-        (
-            isError
-                ? 'error'
-                : 'success'
-        );
+    messageDiv.className ='message ' +(isError? 'error': 'success');
 
 }
-// =================================================
+
 // ПЕРЕВІРКА КОДУ
-// =================================================
 
 function validateCrewCode(code) {
 
@@ -851,80 +1013,44 @@ function validateCrewCode(code) {
     return null;
 
 }
-// =================================================
+
 // СТАТУС ЕКІПАЖУ
-// =================================================
 
-function showStatus(
-    message,
-    isError = false
-) {
+function showStatus(message,isError = false) {
 
-    const status =
-        document.getElementById(
-            'statusMessage'
-        );
+    const status =document.getElementById('statusMessage');
 
+    status.innerHTML =isError? '❌ ' + message: '✅ ' + message;
 
-    status.innerHTML =
-        isError
-            ? '❌ ' + message
-            : '✅ ' + message;
-
-
-    status.style.background =
-        isError
-            ? '#fee'
-            : '#d4edda';
+    status.style.background =isError? '#fee': '#d4edda';
 
 
     setTimeout(() => {
 
-        status.innerHTML =
-            '💡 Готовий до запису';
+        status.innerHTML ='💡 Готовий до запису';
 
-        status.style.background =
-            '#f0f0f0';
+        status.style.background ='#f0f0f0';
 
     }, 3000);
 
 }
-// =================================================
+
 // СТВОРЕННЯ ЕКІПАЖУ
-// =================================================
 
 async function createCrew() {
 
-    const crewName =
-        document
-            .getElementById('crewName')
-            .value
-            .trim();
+    const crewName =document.getElementById('crewName').value.trim();
 
 
-    const crewCode =
-        document
-            .getElementById('crewCode')
-            .value
-            .trim()
-            .toUpperCase();
+    const crewCode =document.getElementById('crewCode').value.trim().toUpperCase();
 
 
-    const crewCodeConfirm =
-        document
-            .getElementById('crewCodeConfirm')
-            .value
-            .trim()
-            .toUpperCase();
+    const crewCodeConfirm =document.getElementById('crewCodeConfirm').value.trim().toUpperCase();
 
 
     if (!crewName) {
 
-        showMessage(
-            'createMessage',
-            'Введіть назву екіпажу',
-            true
-        );
+        showMessage('createMessage','Введіть назву екіпажу',true);
 
         return;
     }
@@ -935,22 +1061,14 @@ async function createCrew() {
 
     if (validation) {
 
-        showMessage(
-            'createMessage',
-            validation,
-            true
-        );
+        showMessage('createMessage',validation,true);
 
         return;
     }
 
     if (crewCode !== crewCodeConfirm) {
 
-        showMessage(
-            'createMessage',
-            'Коди не співпадають',
-            true
-        );
+        showMessage('createMessage','Коди не співпадають',true);
 
         return;
     }
@@ -961,105 +1079,48 @@ async function createCrew() {
 
     button.disabled = true;
 
-    button.textContent =
-        'Створення...';
+    button.textContent ='Створення...';
 
 
     try {
 
-        const params =
-            new URLSearchParams();
+        const params =new URLSearchParams();
 
+        params.append('action','createCrew');
 
-        params.append(
-            'action',
-            'createCrew'
-        );
+        params.append('crewName',crewName);
 
+        params.append('crewCode',crewCod);
 
-        params.append(
-            'crewName',
-            crewName
-        );
+        params.append('t',Date.now());
 
+        const requestUrl =API_URL +'?' +params.toString();
 
-        params.append(
-            'crewCode',
-            crewCode
-        );
+        const response =await fetch(requestUrl);
 
-
-        params.append(
-            't',
-            Date.now()
-        );
-
-
-        const requestUrl =
-            API_URL +
-            '?' +
-            params.toString();
-
-
-        const response =
-            await fetch(requestUrl);
-
-
-        const result =
-            await response.json();
-
+        const result =await response.json();
 
         if (result.success) {
 
-            currentCrewCode =
-                result.crewCode;
+            currentCrewCode =result.crewCode;
 
-            currentCrewName =
-                result.crewName;
+            currentCrewName =result.crewName;
 
 
-            localStorage.setItem(
-                'crewCode',
-                currentCrewCode
-            );
+            localStorage.setItem('crewCode',currentCrewCode);
 
+            localStorage.setItem('crewName',currentCrewName);
 
-            localStorage.setItem(
-                'crewName',
-                currentCrewName
-            );
+            document.getElementById('createdCrewName').textContent =currentCrewName;
 
+            document.getElementById('createdCrewCode').textContent =currentCrewCode;
 
-            document
-                .getElementById(
-                    'createdCrewName'
-                )
-                .textContent =
-                currentCrewName;
-
-
-            document
-                .getElementById(
-                    'createdCrewCode'
-                )
-                .textContent =
-                currentCrewCode;
-
-
-            showScreen(
-                'createdScreen'
-            );
-
+            showScreen('createdScreen');
         }
 
         else {
 
-            showMessage(
-                'createMessage',
-                result.message ||
-                'Не вдалося створити екіпаж',
-                true
-            );
+            showMessage('createMessage',result.message ||'Не вдалося створити екіпаж',true);
 
         }
 
@@ -1067,105 +1128,56 @@ async function createCrew() {
 
     catch (error) {
 
-        console.error(
-            'Помилка створення:',
-            error
-        );
+        console.error('Помилка створення:',error);
 
-
-        showMessage(
-            'createMessage',
-            'Помилка: ' + error.message,
-            true
-        );
-
+        showMessage('createMessage','Помилка: ' + error.message,true);
     }
 
     finally {
 
         button.disabled = false;
 
-        button.textContent =
-            '➕ Створити екіпаж';
+        button.textContent ='➕ Створити екіпаж';
 
     }
 
 }
-// =================================================
 // ВХІД В ЕКІПАЖ
-// =================================================
 
 async function loginCrew() {
 
-    const input =
-        document.getElementById(
-            'loginCode'
-        );
+    const input =document.getElementById('loginCode');
 
-
-    const crewCode =
-        input.value
-        .trim()
-        .toUpperCase();
-
+    const crewCode =input.value.trim().toUpperCase();
 
     if (!crewCode) {
 
-        showMessage(
-            'loginMessage',
-            'Введіть код екіпажу',
-            true
-        );
+        showMessage('loginMessage','Введіть код екіпажу',true);
 
         return;
     }
 
-    const button =
-        document.getElementById(
-            'loginBtn'
-        );
-
+    const button =document.getElementById('loginBtn');
 
     button.disabled = true;
 
     try {
 
-        const url =
-            `${API_URL}` +
-            `?action=loginCrew` +
-            `&crewCode=${encodeURIComponent(crewCode)}` +
-            `&t=${Date.now()}`;
+        const url =`${API_URL}` +`?action=loginCrew` +`&crewCode=${encodeURIComponent(crewCode)}` +`&t=${Date.now()}`;
 
+        const response =await fetch(url);
 
-        const response =
-            await fetch(url);
-
-
-        const result =
-            await response.json();
-
+        const result =await response.json();
 
         if (result.success) {
 
-            currentCrewCode =
-                result.crewCode;
+            currentCrewCode =result.crewCode;
 
+            currentCrewName =result.crewName;
 
-            currentCrewName =
-                result.crewName;
+            localStorage.setItem('crewCode',currentCrewCode);
 
-
-            localStorage.setItem(
-                'crewCode',
-                currentCrewCode
-            );
-
-
-            localStorage.setItem(
-                'crewName',
-                currentCrewName
-            );
-
+            localStorage.setItem('crewName',currentCrewName);
 
             openCrew();
 
@@ -1173,11 +1185,7 @@ async function loginCrew() {
 
         else {
 
-            showMessage(
-                'loginMessage',
-                result.message,
-                true
-            );
+            showMessage('loginMessage',result.message,true);
 
         }
 
@@ -1187,12 +1195,7 @@ async function loginCrew() {
 
         console.error(error);
 
-
-        showMessage(
-            'loginMessage',
-            'Помилка зєднання з сервером',
-            true
-        );
+        showMessage('loginMessage','Помилка зєднання з сервером',true);
 
     }
 
@@ -1203,129 +1206,72 @@ async function loginCrew() {
     }
 
 }
-// =================================================
+
 // ВІДКРИТТЯ ЕКІПАЖУ
-// =================================================
 
 function openCrew() {
 
     showScreen('crewScreen');
 
+    document.getElementById('crewTitle').textContent =currentCrewName;
 
-    document
-        .getElementById(
-            'crewTitle'
-        )
-        .textContent =
-        currentCrewName;
-
-
-    document
-        .getElementById(
-            'crewCodeDisplay'
-        )
-        .textContent =
-        'Код екіпажу: ' +
-        currentCrewCode;
-
+    document.getElementById('crewCodeDisplay').textContent ='Код екіпажу: ' +currentCrewCode;
 
     // Встановлюємо поточний місяць
     setCurrentMonth();
-
 
     // Завантажуємо історію за поточний місяць
     loadHistory();
 
 }
-// =================================================
+
 // ВИХІД
-// =================================================
 
 function logoutCrew() {
 
-    localStorage.removeItem(
-        'crewCode'
-    );
+    localStorage.removeItem('crewCode');
 
-
-    localStorage.removeItem(
-        'crewName'
-    );
-
+    localStorage.removeItem('crewName');
 
     currentCrewCode = null;
     currentCrewName = null;
 
+    document.getElementById('loginCode').value = '';
 
-    document
-        .getElementById(
-            'loginCode'
-        )
-        .value = '';
-
-
-    showScreen(
-        'loginScreen'
-    );
+    showScreen('loginScreen');
 
 }
-// =================================================
+
 // ДОДАТИ ПОДІЮ
-// =================================================
 
 async function addEvent(action) {
 
     if (isLoading) {
 
-        showStatus(
-            'Зачекайте...',
-            true
-        );
+        showStatus('Зачекайте...',true);
 
         return;
     }
 
-
     isLoading = true;
 
+    document.getElementById('btnOn').disabled = true;
 
-    document
-        .getElementById(
-            'btnOn'
-        )
-        .disabled = true;
-
-
-    document
-        .getElementById(
-            'btnOff'
-        )
-        .disabled = true;
-
+    document.getElementById('btnOff').disabled = true;
 
     try {
 
-        const url =
-            `${API_URL}` +
-            `?action=${encodeURIComponent(action)}` +
-            `&crewCode=${encodeURIComponent(currentCrewCode)}` +
-            `&t=${Date.now()}`;
+        const url =`${API_URL}` +`?action=${encodeURIComponent(action)}` +`&crewCode=${encodeURIComponent(currentCrewCode)}` +`&t=${Date.now()}`;
+
+        const response =await fetch(url);
 
 
-        const response =
-            await fetch(url);
-
-
-        const result =
-            await response.json();
+        const result =await response.json();
 
 
         if (result.success) {
 
-            showStatus(
-                'Подію збережено!'
-            );
-
+            showStatus('Подію збережено!');
 
             loadHistory();
 
@@ -1333,10 +1279,7 @@ async function addEvent(action) {
 
         else {
 
-            showStatus(
-                result.message,
-                true
-            );
+            showStatus(result.message,true);
 
         }
 
@@ -1346,11 +1289,7 @@ async function addEvent(action) {
 
         console.error(error);
 
-
-        showStatus(
-            'Помилка зєднання',
-            true
-        );
+        showStatus('Помилка зєднання',true);
 
     }
 
@@ -1358,19 +1297,9 @@ async function addEvent(action) {
 
         isLoading = false;
 
+        document.getElementById('btnOn').disabled = false;
 
-        document
-            .getElementById(
-                'btnOn'
-            )
-            .disabled = false;
-
-
-        document
-            .getElementById(
-                'btnOff'
-            )
-            .disabled = false;
+        document.getElementById('btnOff').disabled = false;
 
     }
 
@@ -1381,29 +1310,13 @@ async function addEvent(action) {
 
 async function loadHistory() {
 
-    const container =
-        document.getElementById(
-            'historyContainer'
-        );
+    const container =document.getElementById('historyContainer');
 
+    const totalWorkTime =document.getElementById('totalWorkTime');
 
-    const totalWorkTime =
-        document.getElementById(
-            'totalWorkTime'
-        );
+    const startDate =document.getElementById('startDate').value;
 
-
-    const startDate =
-        document.getElementById(
-            'startDate'
-        ).value;
-
-
-    const endDate =
-        document.getElementById(
-            'endDate'
-        ).value;
-
+    const endDate =document.getElementById('endDate').value;
 
     container.innerHTML =
         '<div class="loading">Завантаження...</div>';
@@ -1434,40 +1347,29 @@ async function loadHistory() {
             `&t=${Date.now()}`;
 
 
-        const response =
-            await fetch(url);
+        const response =await fetch(url);
 
 
-        const result =
-            await response.json();
+        const result =await response.json();
 
 
         if (!result.success) {
 
-            container.innerHTML =
-                '<div class="loading">❌ Помилка завантаження</div>';
+            container.innerHTML ='<div class="loading">❌ Помилка завантаження</div>';
 
             return;
 
         }
 
-
-        // -------------------------------------------------
         // ЗАГАЛЬНИЙ ЧАС ЗА ПЕРІОД
-        // -------------------------------------------------
 
         if (totalWorkTime) {
 
-            totalWorkTime.textContent =
-                result.periodDuration ||
-                '0 год 0 хв 0 сек';
+            totalWorkTime.textContent =result.periodDuration ||'0 год 0 хв 0 сек';
 
         }
 
-
-        // -------------------------------------------------
         // ІСТОРІЯ
-        // -------------------------------------------------
 
         if (
             !result.data ||
@@ -1565,13 +1467,9 @@ async function loadHistory() {
 
         });
 
-
         container.innerHTML = '';
 
-
-        container.appendChild(
-            list
-        );
+        container.appendChild(list);
 
     }
 
@@ -1579,29 +1477,20 @@ async function loadHistory() {
 
         console.error(error);
 
-
-        container.innerHTML =
-            '❌ Помилка завантаження історії';
+        container.innerHTML ='❌ Помилка завантаження історії';
 
     }
 
 }
-// =================================================
 // КОПІЮВАННЯ КОДУ
-// =================================================
 
 async function copyCrewCode() {
 
-    const code =
-        currentCrewCode;
-
+    const code =currentCrewCode;
 
     try {
 
-        await navigator
-            .clipboard
-            .writeText(code);
-
+        await navigator.clipboard.writeText(code);
 
         alert(
             'Код екіпажу скопійовано!'
@@ -1618,9 +1507,7 @@ async function copyCrewCode() {
     }
 
 }
-// =================================================
 // ПОДІЇ КНОПОК
-// =================================================
 
 document
     .getElementById('loginBtn')
@@ -1656,7 +1543,6 @@ document
 
         }
     );
-
 
 document
     .getElementById('createBtn')
@@ -1713,171 +1599,173 @@ document
         logoutCrew
     );
 
-// =================================================
-// ВИБІР ПЕРІОДУ
-// =================================================
 
-document
-    .getElementById('periodBtn')
-    .addEventListener(
-        'click',
-        () => {
+// НОВИЙ ВИБІР ПЕРІОДУ
 
-            const startDate =
-                document
-                    .getElementById(
-                        'startDate'
-                    )
-                    .value;
+document.querySelectorAll('.quick-btn').forEach(button => {
 
+    button.addEventListener('click', () => {
 
-            const endDate =
-                document
-                    .getElementById(
-                        'endDate'
-                    )
-                    .value;
+        document.querySelectorAll('.quick-btn').forEach(btn =>btn.classList.remove('active'));
 
+        button.classList.add('active');
 
-            const message =
-                document
-                    .getElementById(
-                        'periodMessage'
-                    );
+        const period =button.dataset.period;
 
+        const custom =document.getElementById('customPeriodFields');
 
-            if (!startDate) {
+        const now = new Date();
 
-                message.textContent =
-                    '⚠️ Виберіть початкову дату';
+        let start;
+        let end;
 
-                return;
+        if(period === "custom") {
 
-            }
+            custom.style.display = "flex";
 
+            document.getElementById('applyPeriodBtn').style.display = "block";
 
-            if (!endDate) {
+            // очищаємо старий вибір періоду
+            document.getElementById('periodMessage').textContent = "";
 
-                message.textContent =
-                    '⚠️ Виберіть кінцеву дату';
+            document.getElementById('startDate').value = "";
+            document.getElementById('endDate').value = "";
 
-                return;
-
-            }
-
-
-            if (
-                startDate > endDate
-            ) {
-
-                message.textContent =
-                    '⚠️ Початкова дата не може бути пізніше кінцевої';
-
-                return;
-
-            }
-
-
-            message.textContent =
-                'Завантаження...';
-
-
-            loadHistory();
-
-
-            setTimeout(() => {
-
-                message.textContent =
-                    `Період: ${formatDateForDisplay(startDate)} — ${formatDateForDisplay(endDate)}`;
-
-            }, 500);
+            return;
 
         }
-    );
 
-// =================================================
+        custom.style.display = "none";
+
+        document.getElementById('applyPeriodBtn').style.display = "none";
+
+        end = new Date();
+
+        if(period === "today") {
+
+            start = new Date();
+
+        }
+
+        if(period === "week") {
+
+            start = new Date();
+
+            start.setDate(now.getDate() - 6);
+
+        }
+
+        if(period === "month") {
+
+            start = new Date(now.getFullYear(),now.getMonth(),1);
+
+        }
+
+        document.getElementById('startDate').value =formatDateInput(start);
+
+        document.getElementById('endDate').value =formatDateInput(end);
+
+        document.getElementById('periodMessage').textContent =
+            `Період: ${formatDateForDisplay(formatDateInput(start))} - ${formatDateForDisplay(formatDateInput(end))}`;
+
+        loadHistory();
+
+    });
+
+});
+
+const applyPeriodBtn = document.getElementById('applyPeriodBtn');
+
+if (applyPeriodBtn) {
+
+    applyPeriodBtn.onclick = function() {
+
+        const startDate =document.getElementById('startDate').value;
+
+        const endDate =document.getElementById('endDate').value;
+
+        console.log("Вибраний період:",startDate,endDate);
+
+        if (!startDate || !endDate) {
+
+            document.getElementById('periodMessage').textContent ="⚠️ Виберіть обидві дати";
+
+            return;
+
+        }
+
+        if (startDate > endDate) {
+
+            document.getElementById('periodMessage').textContent ="⚠️ Невірний період";
+
+            return;
+
+        }
+
+        document.getElementById('periodMessage').textContent ="Завантаження...";
+
+        document.querySelectorAll('.quick-btn').forEach(btn =>btn.classList.remove('active'));
+
+        document.querySelector('[data-period="custom"]').classList.add('active');
+
+        loadHistory();
+
+        setTimeout(() => {
+
+            document.getElementById('periodMessage').textContent =`Період: ${formatDateForDisplay(startDate)} - ${formatDateForDisplay(endDate)}`;
+
+        }, 700);
+
+    };
+
+}
+
+function formatDateInput(date) {
+
+    return date.getFullYear()+ "-"+ String(date.getMonth()+1).padStart(2,'0')+ "-"+ String(date.getDate()).padStart(2,'0');
+
+}
+
 // ФОРМАТУВАННЯ ДАТИ
-// =================================================
 
 function formatDateForDisplay(dateString) {
 
-    const parts =
-        dateString.split('-');
+    const parts =dateString.split('-');
 
 
-    if (parts.length !== 3) {
-        return dateString;
-    }
+    if (parts.length !== 3) {return dateString;}
 
-
-    return (
-        parts[2] +
-        '.' +
-        parts[1] +
-        '.' +
-        parts[0]
-    );
+    return (parts[2] +'.' +parts[1] +'.' +parts[0]);
 
 }
 
-// =================================================
 // ВСТАНОВИТИ ПОТОЧНИЙ МІСЯЦЬ
-// =================================================
 
 function setCurrentMonth() {
 
-    const now =
-        new Date();
+    const now =new Date();
+
+    const year =now.getFullYear();
+
+    const month =String(now.getMonth() + 1).padStart(2, '0');
+
+    const lastDay =new Date(year,now.getMonth() + 1,0).getDate();
+
+    const firstDate =`${year}-${month}-01`;
+
+    const lastDate =`${year}-${month}-${String(lastDay).padStart(2, '0')}`;
 
 
-    const year =
-        now.getFullYear();
+    document.getElementById('startDate').value =firstDate;
 
-
-    const month =
-        String(
-            now.getMonth() + 1
-        ).padStart(2, '0');
-
-
-    const lastDay =
-        new Date(
-            year,
-            now.getMonth() + 1,
-            0
-        ).getDate();
-
-
-    const firstDate =
-        `${year}-${month}-01`;
-
-
-    const lastDate =
-        `${year}-${month}-${String(lastDay).padStart(2, '0')}`;
-
-
-    document
-        .getElementById('startDate')
-        .value =
-        firstDate;
-
-
-    document
-        .getElementById('endDate')
-        .value =
-        lastDate;
+    document.getElementById('endDate').value =lastDate;
 
 }
 
-// =================================================
 // ENTER ДЛЯ ВХОДУ
-// =================================================
 
 document
-    .getElementById('loginCode')
-    .addEventListener(
-        'keydown',
-        event => {
+    .getElementById('loginCode').addEventListener('keydown',event => {
 
             if (event.key === 'Enter') {
 
@@ -1888,38 +1776,22 @@ document
         }
     );
 
-// =================================================
 // АВТОМАТИЧНИЙ ВХІД
-// =================================================
 
-window.addEventListener(
-    'DOMContentLoaded',
-    () => {
+window.addEventListener('DOMContentLoaded',() => {
 
-        const savedCode =
-            localStorage.getItem(
-                'crewCode'
-            );
+        const savedCode =localStorage.getItem('crewCode');
 
-
-        const savedName =
-            localStorage.getItem(
-                'crewName'
-            );
-
+        const savedName =localStorage.getItem('crewName');
 
         if (
             savedCode &&
             savedName
         ) {
 
-            currentCrewCode =
-                savedCode;
+            currentCrewCode =savedCode;
 
-
-            currentCrewName =
-                savedName;
-
+            currentCrewName =savedName;
 
             openCrew();
 
@@ -1927,9 +1799,7 @@ window.addEventListener(
 
         else {
 
-            showScreen(
-                'loginScreen'
-            );
+            showScreen('loginScreen');
 
         }
 
